@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://beksuvm45n4mk"]
+
+[ext_resource type="Script" uid="uid://bwh3kq2vnq6vl" path="res://scenes/mow_baby.gd" id="1_dfj7a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h8bqi"]
+radius = 16.0
+
+[node name="mowBaby" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_dfj7a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.00578221, 0.16774, 0.211811, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("CircleShape2D_h8bqi")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="rotationTimer" type="Timer" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

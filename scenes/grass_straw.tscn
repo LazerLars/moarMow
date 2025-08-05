@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bi7vsjb05jdgk"]
+
+[ext_resource type="Script" uid="uid://cervh6r2ina77" path="res://scenes/grass_straw.gd" id="1_b7ok3"]
+[ext_resource type="Texture2D" uid="uid://cipmxeqjf1k0v" path="res://assets/grass/grass_starw_6x8.png" id="1_q0slw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b7ok3"]
+radius = 3.11134
+
+[node name="grass_straw" type="Area2D"]
+script = ExtResource("1_b7ok3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("1_q0slw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9.31323e-10, -5.68434e-14)
+rotation = -1.66357
+scale = Vector2(1.93353, 1.14342)
+shape = SubResource("CircleShape2D_b7ok3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

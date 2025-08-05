@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://beksuvm45n4mk"]
+
+[ext_resource type="Script" uid="uid://bwh3kq2vnq6vl" path="res://scenes/mow_baby.gd" id="1_dfj7a"]
+[ext_resource type="Texture2D" uid="uid://dabla06e57mst" path="res://assets/mower/mowBaby_sprite.png" id="2_th8xb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_th8xb"]
+size = Vector2(32, 31)
+
+[node name="mowBaby" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_dfj7a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_th8xb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+rotation = -0.00175633
+shape = SubResource("RectangleShape2D_th8xb")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="reverseTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="rotateTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="reverseTimer" to="." method="_on_reverse_timer_timeout"]
+[connection signal="timeout" from="rotateTimer" to="." method="_on_rotate_timer_timeout"]
