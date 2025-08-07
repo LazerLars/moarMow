@@ -11,12 +11,16 @@ size = Vector2(0.340248, 32.1219)
 
 [node name="Main" type="Node2D"]
 
+[node name="mowBaby" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(309, 307)
+
 [node name="grass" type="Area2D" parent="."]
 position = Vector2(485, 272)
 scale = Vector2(30.125, 16.9063)
 script = ExtResource("1_jyhfs")
 
 [node name="sprite" type="Sprite2D" parent="grass"]
+visible = false
 texture_filter = 1
 texture_repeat = 1
 texture = ExtResource("1_0wfyh")
@@ -42,9 +46,6 @@ shape = SubResource("RectangleShape2D_sugp2")
 
 [node name="grass_straws_manager" type="Node" parent="."]
 script = ExtResource("5_tefeu")
-
-[node name="mowBaby" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(696, 101)
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(925, 101)

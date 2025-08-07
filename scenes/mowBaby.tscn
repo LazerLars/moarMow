@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bwh3kq2vnq6vl" path="res://scenes/mow_baby.gd" id="1_dfj7a"]
 [ext_resource type="Texture2D" uid="uid://dabla06e57mst" path="res://assets/mower/mowBaby_sprite.png" id="2_th8xb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_th8xb"]
-size = Vector2(32, 31)
+[sub_resource type="CircleShape2D" id="CircleShape2D_th8xb"]
+radius = 1.11803
 
 [node name="mowBaby" type="CharacterBody2D"]
 motion_mode = 1
@@ -16,9 +16,11 @@ texture = ExtResource("2_th8xb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 rotation = -0.00175633
-shape = SubResource("RectangleShape2D_th8xb")
+shape = SubResource("CircleShape2D_th8xb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-2.98023e-08, 5.96046e-08)
+scale = Vector2(0.5375, 0.4625)
 
 [node name="reverseTimer" type="Timer" parent="."]
 wait_time = 0.3
