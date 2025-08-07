@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b1qdqsq7i6al" path="res://assets/grass/grass_32x32_00.png" id="2_6p6wi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gyi7m"]
-radius = 15.0
+radius = 11.0454
 
 [node name="grass_tile_32x32" type="Area2D"]
 script = ExtResource("1_quhsi")

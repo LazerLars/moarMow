@@ -10,7 +10,11 @@ var rotate = false
 
 func _ready():
 	randomize()
-	
+	var screen_size = get_viewport().get_visible_rect().size
+	var width = screen_size.x
+	var height = screen_size.y
+	position = Vector2(randi_range(32, width), randi_range(32, height))
+	rotation = randi_range(0,360)
 	#direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
 	
 	

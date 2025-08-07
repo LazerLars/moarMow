@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dabla06e57mst" path="res://assets/mower/mowBaby_sprite.png" id="2_th8xb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_th8xb"]
-radius = 1.11803
+radius = 2.06155
 
 [node name="mowBaby" type="CharacterBody2D"]
 motion_mode = 1
