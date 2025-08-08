@@ -11,7 +11,7 @@ func _ready() -> void:
 	var width = screen_size.x
 	var height = screen_size.y
 	
-	var tile_size = Vector2(32, 32)  # assuming tile is 32x32, adjust if needed
+	var tile_size = Vector2(8, 8)  # assuming tile is 32x32, adjust if needed
 
 	var cols = int(screen_size.x / tile_size.x) + 1
 	var rows = int(screen_size.y / tile_size.y) + 1

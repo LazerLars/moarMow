@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnmte4rpjswa1"]
 
 [ext_resource type="Script" uid="uid://c6i4u3arik58f" path="res://scenes/grass_tile.gd" id="1_quhsi"]
-[ext_resource type="Texture2D" uid="uid://b1qdqsq7i6al" path="res://assets/grass/grass_32x32_00.png" id="2_6p6wi"]
+[ext_resource type="Texture2D" uid="uid://dron2k1w6fyus" path="res://assets/grass/grass_8x8_00.png" id="2_ilcni"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gyi7m"]
-radius = 11.0454
+radius = 3.0
 
-[node name="grass_tile_32x32" type="Area2D"]
+[node name="grass_tile" type="Area2D"]
 script = ExtResource("1_quhsi")
 
 [node name="Grass" type="Sprite2D" parent="."]
-texture = ExtResource("2_6p6wi")
+texture = ExtResource("2_ilcni")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gyi7m")
