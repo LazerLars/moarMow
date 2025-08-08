@@ -3,8 +3,7 @@
 [ext_resource type="Script" uid="uid://bwh3kq2vnq6vl" path="res://scenes/mow_baby.gd" id="1_dfj7a"]
 [ext_resource type="Texture2D" uid="uid://dabla06e57mst" path="res://assets/mower/mowBaby_sprite.png" id="2_th8xb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_th8xb"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_th8xb"]
 
 [node name="mowBaby" type="CharacterBody2D"]
 motion_mode = 1
@@ -16,7 +15,8 @@ texture = ExtResource("2_th8xb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 rotation = -0.00175633
-shape = SubResource("CircleShape2D_th8xb")
+shape = SubResource("RectangleShape2D_th8xb")
+disabled = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-2.98023e-08, 5.96046e-08)
@@ -29,6 +29,11 @@ one_shot = true
 [node name="rotateTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="start_cutting_timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="reverseTimer" to="." method="_on_reverse_timer_timeout"]
 [connection signal="timeout" from="rotateTimer" to="." method="_on_rotate_timer_timeout"]
+[connection signal="timeout" from="start_cutting_timer" to="." method="_on_start_cutting_timer_timeout"]

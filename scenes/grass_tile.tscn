@@ -15,4 +15,9 @@ texture = ExtResource("2_ilcni")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gyi7m")
 
+[node name="reset_mowed_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="reset_mowed_timer" to="." method="_on_reset_mowed_timer_timeout"]

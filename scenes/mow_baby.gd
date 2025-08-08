@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 var speed: float = 100
 var turn_rotation: int = 60
+var timer: float = 0
+var cutting: bool = false
 #var direction: Vector2 = Vector2.ZERO
 
 var direction = 1
@@ -21,7 +23,11 @@ func _ready():
 	
 func _process(delta: float) -> void:
 	#pass
-	
+	# we are going to disable the mower's collision for 0.1 seconds, to ensure we first start mowing once we have the mower in the right positon, else a bug will occur were we have mowed the original position of the mower position in the scene
+	timer += delta
+	if timer >= 0.1:
+		$CollisionShape2D.disabled = false
+		
 	#velocity = direction * speed
 	if rotate == true:
 		rotation_degrees += turn_rotation * delta  # x degrees per second
@@ -77,4 +83,7 @@ func random_rotation(x_degree:int = -360, y_degree:int = 360) -> void:
 	turn_rotation = randi_range(x_degree, y_degree)
 	print("new rotation degrees set set: ", str(turn_rotation))
 
-	
+# this contols how long time will pass before the mower actually are allowed to mow
+func _on_start_cutting_timer_timeout() -> void:
+	print("we start cutting")
+	cutting = true

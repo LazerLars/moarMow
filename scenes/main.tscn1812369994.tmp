@@ -11,7 +11,7 @@ size = Vector2(0.340248, 32.1219)
 [node name="Main" type="Node2D"]
 
 [node name="mowBaby" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(217, 158)
+position = Vector2(309, 307)
 
 [node name="grass" type="Area2D" parent="."]
 position = Vector2(485, 272)
@@ -37,7 +37,7 @@ position = Vector2(-15.8672, -0.473196)
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_sugp2")
 
-[node name="grass_manager" type="Node" parent="."]
+[node name="grass_straw_manager" type="Node" parent="."]
 script = ExtResource("5_tefeu")
 
 [node name="Line2D" type="Line2D" parent="."]

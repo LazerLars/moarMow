@@ -22,8 +22,9 @@ func _ready() -> void:
 	print(grass.texture.get_height())
 
 func _process(delta: float) -> void:
-	if mowed_bool:
-		grass.texture = GRASS_8X_8_01
+	pass
+	#if mowed_bool:
+		#grass.texture = GRASS_8X_8_01
 	#time_passed += delta
 
 	#if state == 0 and time_passed >= 0.5:
@@ -37,4 +38,22 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	mowed_bool = true
+	
+	# check if we collide with a mower
+	if body.name == "mowBaby":
+		# set the mower class
+		var mowah = body as mower
+		# if the mower are cutting 
+		if mowah.cutting:
+			mowed_bool = true
+			grass.texture = GRASS_8X_8_01
+			# disable collision since we dont need to check this again before its ready to be mowed again
+			$CollisionShape2D.disabled = true
+			$reset_mowed_timer.start()
+
+
+# this reset the grass tile once it time to be mowed again
+func _on_reset_mowed_timer_timeout() -> void:
+	mowed_bool = false
+	$CollisionShape2D.disabled = false
+	grass.texture = GRASS_8X_8_00
