@@ -18,6 +18,7 @@ var mowed_bool = false
 func _ready() -> void:
 	
 	grass.texture = GRASS_8X_8_00
+	
 	print("size:")
 	print(grass.texture.get_height())
 
@@ -45,8 +46,9 @@ func _on_body_entered(body: Node2D) -> void:
 		var mowah = body as mower
 		# if the mower are cutting 
 		if mowah.cutting:
-			mowed_bool = true
+			
 			grass.texture = GRASS_8X_8_01
+			mowed_bool = true
 			# disable collision since we dont need to check this again before its ready to be mowed again
 			$CollisionShape2D.disabled = true
 			$reset_mowed_timer.start()
@@ -56,4 +58,4 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_reset_mowed_timer_timeout() -> void:
 	mowed_bool = false
 	$CollisionShape2D.disabled = false
-	grass.texture = GRASS_8X_8_00
+	grass.texture = GRASS_8X_8_01

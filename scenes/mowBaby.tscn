@@ -1,26 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://beksuvm45n4mk"]
+[gd_scene load_steps=10 format=3 uid="uid://beksuvm45n4mk"]
 
 [ext_resource type="Script" uid="uid://bwh3kq2vnq6vl" path="res://scenes/mow_baby.gd" id="1_dfj7a"]
 [ext_resource type="Texture2D" uid="uid://dabla06e57mst" path="res://assets/mower/mowBaby_sprite.png" id="2_th8xb"]
+[ext_resource type="Texture2D" uid="uid://dfyisvgyfy3qg" path="res://assets/mower/mowMagic_32x32_00-Sheet-Sheet.png" id="3_2tmjc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_th8xb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfuan"]
+atlas = ExtResource("3_2tmjc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10kpu"]
+atlas = ExtResource("3_2tmjc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr87c"]
+atlas = ExtResource("3_2tmjc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ocy61"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfuan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10kpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr87c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_th8xb"]
+radius = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tmjc"]
+size = Vector2(32, 31)
 
 [node name="mowBaby" type="CharacterBody2D"]
 motion_mode = 1
+wall_min_slide_angle = 3.14159
 script = ExtResource("1_dfj7a")
+speed = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_th8xb")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_ocy61")
+frame_progress = 0.41805
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
-rotation = -0.00175633
-shape = SubResource("RectangleShape2D_th8xb")
+rotation = -0.00747451
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_th8xb")
 disabled = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
 position = Vector2(-2.98023e-08, 5.96046e-08)
-scale = Vector2(0.5375, 0.4625)
+scale = Vector2(0.8975, 0.8225)
 
 [node name="reverseTimer" type="Timer" parent="."]
 wait_time = 0.3
@@ -33,7 +76,15 @@ one_shot = true
 one_shot = true
 autostart = true
 
+[node name="Area2D_for_mouse_deteceting" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_for_mouse_deteceting"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_2tmjc")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="reverseTimer" to="." method="_on_reverse_timer_timeout"]
 [connection signal="timeout" from="rotateTimer" to="." method="_on_rotate_timer_timeout"]
 [connection signal="timeout" from="start_cutting_timer" to="." method="_on_start_cutting_timer_timeout"]
+[connection signal="mouse_entered" from="Area2D_for_mouse_deteceting" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D_for_mouse_deteceting" to="." method="_on_area_2d_for_mouse_deteceting_mouse_exited"]

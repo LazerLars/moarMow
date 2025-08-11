@@ -53,7 +53,6 @@ position = Vector2(482, 271)
 script = ExtResource("3_sugp2")
 
 [node name="mower_menu" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel" type="Panel" parent="mower_menu"]
 offset_left = 295.0
@@ -68,12 +67,9 @@ offset_bottom = 23.0
 text = "Mowed"
 
 [node name="Mowed_units" type="Label" parent="mower_menu/Panel"]
-offset_left = 66.0
-offset_top = 1.0
-offset_right = 123.0
-offset_bottom = 24.0
-text = "
-"
+offset_right = 57.0
+offset_bottom = 23.0
+text = "Mowed"
 
 [node name="close" type="Button" parent="mower_menu/Panel"]
 layout_mode = 0

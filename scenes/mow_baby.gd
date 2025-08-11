@@ -1,14 +1,18 @@
 class_name mower
 extends CharacterBody2D
 
-var speed: float = 100
+@export var speed: float = 100
 var turn_rotation: int = 60
 var timer: float = 0
 var cutting: bool = false
 #var direction: Vector2 = Vector2.ZERO
-
+var cutting_timer: float = 0
 var direction = 1
 var rotate = false
+
+var _mouse_hovering_bool: bool = false
+
+signal open_mower_menu
 
 func _ready():
 	randomize()
@@ -18,11 +22,15 @@ func _ready():
 	position = Vector2(randi_range(32, width), randi_range(32, height))
 	rotation = randi_range(0,360)
 	#direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
-	
+	$AnimatedSprite2D.play("default")
 	
 	
 func _process(delta: float) -> void:
+	if cutting:
+		cutting_timer += delta
 	#pass
+	Godscript.mow_distance = cutting_timer * (3*1000)/3600
+	
 	# we are going to disable the mower's collision for 0.1 seconds, to ensure we first start mowing once we have the mower in the right positon, else a bug will occur were we have mowed the original position of the mower position in the scene
 	timer += delta
 	if timer >= 0.1:
@@ -39,6 +47,12 @@ func _process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	# this makes us move all the time
 	move_and_slide()
+	
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("open_mower_menu") and _mouse_hovering_bool:
+		print("open menu")
+		open_mower_menu.emit()
+
 
 func hitObstacle():
 	# we hit a obstacle
@@ -87,3 +101,16 @@ func random_rotation(x_degree:int = -360, y_degree:int = 360) -> void:
 func _on_start_cutting_timer_timeout() -> void:
 	print("we start cutting")
 	cutting = true
+
+
+func _on_mouse_entered() -> void:
+	print("test")
+
+
+func _on_area_2d_mouse_entered() -> void:
+	_mouse_hovering_bool = true
+
+
+func _on_area_2d_for_mouse_deteceting_mouse_exited() -> void:
+	_mouse_hovering_bool = false
+	
